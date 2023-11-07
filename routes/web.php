@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminKategoriPeserta;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// route umum
 Route::name('app.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+// route admin
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/kategori-peserta', [AdminKategoriPeserta::class, 'index'])->name('kategori_peserta');
 });
