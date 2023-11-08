@@ -54,20 +54,23 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="javascript:;" method="post">
+                    <form action="javascript:;" method="post" id="kategorispesertas">
                         @csrf
                         <div class="mb-3">
                             <label for="nama-kategori-peserta" class="col-form-label">Nama Kategori</label>
-                            <input class="form-control" id="nama-kategori-peserta"
+                            <input class="form-control" name="nama_kategori_peserta" id="nama-kategori-peserta"
                                 placeholder="nama kategori, misal ibu hamil / balita"></input>
                         </div>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+@push('custom_js')
+    <script src="{{ asset('scripts/kategori-peserta/view.min.js?q=') . time() }}"></script>
+@endpush
