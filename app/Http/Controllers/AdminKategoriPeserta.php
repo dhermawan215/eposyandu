@@ -10,4 +10,11 @@ class AdminKategoriPeserta extends Controller
     {
         return view('kategori-peserta.index');
     }
+
+    public function store(Request $request)
+    {
+        $requestAll = $request->all();
+
+        dd($requestAll);
+    }
 }

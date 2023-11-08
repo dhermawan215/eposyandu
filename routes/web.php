@@ -27,4 +27,5 @@ Route::name('app.')->group(function () {
 // route admin
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/kategori-peserta', [AdminKategoriPeserta::class, 'index'])->name('kategori_peserta');
+    Route::post('/kategori-peserta', [AdminKategoriPeserta::class, 'store']);
 });

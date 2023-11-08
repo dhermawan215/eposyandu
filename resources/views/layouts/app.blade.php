@@ -10,6 +10,7 @@
     <title>ePosyandu</title>
 
     <meta name="description" content="sistem e-posyandu" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- style -->
     @include('layouts.style')
