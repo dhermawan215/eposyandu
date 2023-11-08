@@ -9,7 +9,7 @@
      rel="stylesheet" />
 
  <!-- Icons. Uncomment required icon fonts -->
- <link rel="stylesheet" href={{ asset('sneat-1.0.0/assets/vendor/fonts/boxicons.css') }}" />
+ <link rel="stylesheet" href="{{ asset('sneat-1.0.0/assets/vendor/fonts/boxicons.css') }}" />
 
  <!-- Core CSS -->
  <link rel="stylesheet" href="{{ asset('sneat-1.0.0/assets/vendor/css/core.css') }}"
@@ -23,6 +23,9 @@
 
  <link rel="stylesheet" href="{{ asset('sneat-1.0.0/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
+
+ <!-- datatable -->
+ {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"> --}}
  <!-- Page CSS -->
 
  <!-- Helpers -->
