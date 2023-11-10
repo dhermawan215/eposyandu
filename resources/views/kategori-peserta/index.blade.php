@@ -22,8 +22,8 @@
                     <div class="mb-4">
                         <div class="card">
                             <h5 class="card-header">Data Kategori Peserta</h5>
-                            <div class="">
-                                <table class="table table-hover">
+                            <div class="p-3 m-3">
+                                <table class="table table-hover" id="tableKtgPeserta" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>No</th>
