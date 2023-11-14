@@ -28,8 +28,10 @@ Route::name('app.')->group(function () {
 
 // route admin
 Route::prefix('admin')->name('admin.')->group(function () {
+    // admin kategori peserta routes
     Route::get('/kategori-peserta', [AdminKategoriPeserta::class, 'index'])->name('kategori_peserta');
     Route::post('/kategori-peserta', [AdminKategoriPeserta::class, 'store']);
+    Route::patch('/kategori-peserta/{id}', [AdminKategoriPeserta::class, 'update']);
     Route::delete('/kategori-peserta/{id}', [AdminKategoriPeserta::class, 'destroy']);
     Route::post('/kategori-pesertas', [AdminKategoriPeserta::class, 'tableData']);
 });

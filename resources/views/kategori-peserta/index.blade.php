@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal tambah-->
     <div class="modal fade" id="modalTambahKategoriPeserta" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -62,6 +62,34 @@
                                 placeholder="nama kategori, misal ibu hamil / balita"></input>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal edit data-->
+    <div class="modal fade" id="modalEditKategoriPeserta" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Formulir Tambah Kategori Peserta</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="javascript:;" method="post" id="kategorispesertasUpdate">
+                        @csrf
+                        @method('PATCH')
+                        <div class="mb-3">
+                            <input type="hidden" name="dataForm" id="dataForm">
+                            <label for="nama-kategori-peserta" class="col-form-label">Nama Kategori</label>
+                            <input class="form-control" name="nama_kategori_peserta" id="nama-kategori-peserta-update"
+                                placeholder="nama kategori, misal ibu hamil / balita"></input>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Perbarui Data</button>
                     </form>
                 </div>
                 <div class="modal-footer">
