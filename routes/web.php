@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AdminKategoriPeserta;
+use App\Http\Controllers\AdminPeserta;
 use App\Http\Controllers\DashboardController;
 
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::patch('/kategori-peserta/{id}', [AdminKategoriPeserta::class, 'update']);
     Route::delete('/kategori-peserta/{id}', [AdminKategoriPeserta::class, 'destroy']);
     Route::post('/kategori-pesertas', [AdminKategoriPeserta::class, 'tableData']);
+    // admin peserta routes
+    Route::get('/peserta', [AdminPeserta::class, 'index'])->name('peserta');
+    Route::post('/peserta', [AdminPeserta::class, 'tabelDataAdmin']);
 });
