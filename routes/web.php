@@ -4,7 +4,7 @@
 use App\Http\Controllers\AdminKategoriPeserta;
 use App\Http\Controllers\AdminPeserta;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\PesertaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +26,9 @@ Route::get('/', function () {
 Route::name('app.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
+
+// route peserta(non admin)
+Route::get('/peserta', [PesertaController::class, 'index'])->name('peserta');
 
 // route admin
 Route::prefix('admin')->name('admin.')->group(function () {
