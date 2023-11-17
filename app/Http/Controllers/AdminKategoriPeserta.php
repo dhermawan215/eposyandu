@@ -146,4 +146,9 @@ class AdminKategoriPeserta extends Controller
         }
         return response()->json(['success' => \true], 200);
     }
+
+    // fungsi untuk dropdown kategori peserta menggunakan select 2
+    public function dropdownKategoriPeserta(Request $request)
+    {
+    }
 }

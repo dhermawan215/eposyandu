@@ -30,6 +30,7 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
      integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
      crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <link rel="stylesheet" href="{{ asset('select2-4.1.0/dist/css/select2.min.css') }}">
 
  <!-- Helpers -->
  <script src="{{ asset('sneat-1.0.0/assets/vendor/js/helpers.js') }}"></script>

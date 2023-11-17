@@ -2,7 +2,17 @@
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin - Peserta</span></h4>
+        <div class="row">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-style1">
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('app.dashboard') }}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active">Admin - Modul Peserta</li>
+                </ol>
+                <hr>
+            </nav>
+        </div>
         <div class="row">
             <div class="col-12 col-md-12 col-lg-12 order-3 order-md-2">
                 <div class="row">
