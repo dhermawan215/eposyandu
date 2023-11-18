@@ -56,7 +56,7 @@
                     <h5 class="modal-title" id="exampleModalLabel1">Modal Datar Peserta Baru</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="javascript:;" method="post">
+                <form action="javascript:;" method="post" id="formDaftarPesertaBaru">
                     @csrf
                     <div class="modal-body">
                         <div class="row">
@@ -100,15 +100,18 @@
                             </div>
                         </div>
                         <div class="row g-2">
-                            <div class="col mb-1">
-                                <label for="kategori_peserta" class="form-label">Kategori Peserta</label>
-                                <select name="kategori_id" id="kategori_peserta" class="form-control">
 
-                                </select>
-                            </div>
+                            <label for="kategori_peserta" class="form-label">Kategori Peserta</label>
+                            <select name="kategori_id" id="kategoriPesertasss" class="form-control">
+                                <option selected>Pilih Kategori Peserta</option>
+                                @foreach ($dropdownData as $value)
+                                    <option value="{{ $value->id }}">{{ $value->nama_kategori_peserta }}</option>
+                                @endforeach
+                            </select>
+
                         </div>
                         <div class="row g-2 m-2">
-                            <button type="button" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
                 </form>
@@ -123,6 +126,6 @@
     </div>
 @endsection
 @push('custom_js')
-    <script src="{{ asset('select2-4.1.0/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('scripts/select2.js') }}"></script>
     <script src="{{ asset('scripts/peserta/peserta.min.js?q=') . time() }}"></script>
 @endpush

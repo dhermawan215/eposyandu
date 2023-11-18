@@ -48,9 +48,39 @@ var Index = (function () {
         });
     };
 
+    // fungsi submit data
+    var handlePesertaSave = function () {
+        $("#formDaftarPesertaBaru").submit(function (e) {
+            e.preventDefault();
+            const form = $(this);
+            let formData = new FormData(form[0]);
+
+            $.ajax({
+                type: "POST",
+                url: url + "/peserta",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    toastr.success("Data Berhasil Disimpan", "Success");
+                    setTimeout(() => {
+                        document.location.href =
+                            url + "/pemeriksaan/" + response.peserta;
+                    }, 2000);
+                },
+                error: function (response) {
+                    $.each(response.responseJSON, function (key, value) {
+                        toastr.error(value);
+                    });
+                },
+            });
+        });
+    };
+
     return {
         init: function () {
             handleData();
+            handlePesertaSave();
         },
     };
 })();

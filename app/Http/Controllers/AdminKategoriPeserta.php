@@ -148,7 +148,10 @@ class AdminKategoriPeserta extends Controller
     }
 
     // fungsi untuk dropdown kategori peserta menggunakan select 2
-    public function dropdownKategoriPeserta(Request $request)
+    public function dropdownKategoriPeserta()
     {
+        $dropwpdon = KategoriPeserta::all();
+
+        return $dropwpdon;
     }
 }
