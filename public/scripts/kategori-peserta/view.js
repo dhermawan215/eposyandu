@@ -19,6 +19,7 @@ var Index = (function () {
                     toastr.success("Data Berhasil Disimpan", "Success");
                     setTimeout(() => {
                         $("#modalTambahKategoriPeserta").modal("toggle");
+                        $("#nama-kategori-peserta").val("");
                         table.ajax.reload();
                     }, 1000);
                 },
@@ -70,6 +71,10 @@ var Index = (function () {
                 { data: "action", orderable: false },
             ],
         });
+        $("#tableKtgPeserta tbody").on("click", "tr", function () {
+            // console.log(table.row(this).data());
+            handleEdit(table.row(this).data());
+        });
     };
 
     // fungsi hapus data
@@ -97,11 +102,61 @@ var Index = (function () {
             }
         });
     };
+
+    // fungsi edit data
+    var handleEdit = function (param) {
+        var paramData = param;
+
+        // Convert the 'action' string into a jQuery object
+        var $action = $($.parseHTML(paramData.action));
+
+        // Access the value of data-btnedit
+        var btnEditValue = $action.find(".kategori-edits").data("btnedit");
+
+        //    set niali ke form edit
+        $("#nama-kategori-peserta-update").val(paramData.nama);
+        $("#dataForm").val(btnEditValue);
+    };
+
+    // fungsi update ajax
+    var handleUpdate = function () {
+        $("#kategorispesertasUpdate").submit(function (e) {
+            e.preventDefault();
+
+            const id = $("#dataForm").val();
+
+            const form = $(this);
+            let formData = new FormData(form[0]);
+
+            $.ajax({
+                type: "POST",
+                url: url + "/admin/kategori-peserta/" + id,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    toastr.success("Data Berhasil Diperbarui", "Success");
+                    setTimeout(() => {
+                        $("#modalEditKategoriPeserta").modal("toggle");
+                        $("#nama-kategori-peserta-update").val("");
+                        table.ajax.reload();
+                    }, 2000);
+                },
+                error: function (response) {
+                    $.each(response.responseJSON, function (key, value) {
+                        toastr.error(value);
+                    });
+                },
+            });
+        });
+    };
+
     return {
         init: function () {
             handleKategoriSave();
             handleData();
             handleDelete();
+            handleUpdate();
         },
     };
 })();

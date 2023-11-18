@@ -82,7 +82,8 @@ class AdminKategoriPeserta extends Controller
 
                 $data['rnum'] = $i;
                 $data['nama'] = $value->nama_kategori_peserta;
-                $data['action'] = '<div class="d-flex"><button class="btn btn-sm btn-primary kategori-edits" title="Edit" data-btnedit="' . $dataButton . '"><i class="bx bxs-edit"></i></button><button class="btn btn-sm btn-danger kategori-deletes ms-2" title="Hapus" data-btndelete="' . $dataButton . '"><i class="bx bx-trash"></i></button></div>';
+                $data['action'] = '<div class="d-flex"><button class="btn btn-sm btn-primary kategori-edits" data-bs-toggle="modal"
+                data-bs-target="#modalEditKategoriPeserta" title="Edit" data-btnedit="' . $dataButton . '"><i class="bx bxs-edit"></i></button><button class="btn btn-sm btn-danger kategori-deletes ms-2" title="Hapus" data-btndelete="' . $dataButton . '"><i class="bx bx-trash"></i></button></div>';
 
                 $arr[] = $data;
                 $i++;
@@ -107,5 +108,50 @@ class AdminKategoriPeserta extends Controller
         $hapusData->delete();
 
         return response()->json(['success' => true], 200);
+    }
+
+    // fungsi update data
+    public function update(Request $request, $id)
+    {
+        $requestAll = $request->all();
+
+        // custom error messages
+        $message = ['nama_kategori_peserta.required' => 'Nama Harus di isi!'];
+        // validation
+        $validator = Validator::make(
+            $requestAll,
+            [
+                'nama_kategori_peserta' => 'required',
+            ],
+            $message
+        );
+
+        // return validation if errors
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->all(), 403);
+        }
+
+        // unset token dan method
+        unset($requestAll['_token']);
+        unset($requestAll['_method']);
+
+        $id2 = base64_decode($id);
+
+        $updateData = KategoriPeserta::find($id2);
+
+        $result = $updateData->update(['nama_kategori_peserta' => htmlspecialchars($requestAll['nama_kategori_peserta'])]);
+
+        if (!$result) {
+            return response()->json(['success' => \false], 500);
+        }
+        return response()->json(['success' => \true], 200);
+    }
+
+    // fungsi untuk dropdown kategori peserta menggunakan select 2
+    public function dropdownKategoriPeserta()
+    {
+        $dropwpdon = KategoriPeserta::all();
+
+        return $dropwpdon;
     }
 }
