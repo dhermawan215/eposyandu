@@ -17,6 +17,61 @@ class PesertaController extends Controller
         return \view('peserta.index', ['dropdownData' => $dropdown]);
     }
 
+    // fungsi untuk data tabel
+    public function dataPeserta(Request $request)
+    {
+        // request data tabel
+        $draw = $request['draw'];
+        $offset = $request['start'] ? $request['start'] : 0;
+        $limit = $request['length'] ? $request['length'] : 10;
+        $globalSearch = $request['search']['value'];
+        // query awal
+        $query = Peserta::select('*');
+        // query pencarian
+        if ($globalSearch) {
+            $query->where('nama_peserta', 'like', '%' . $globalSearch . '%')
+                ->orWhere('no_peserta', 'like', '%' . $globalSearch . '%');
+        }
+        // query table data
+        $recordsFiltered = $query->count();
+
+        $resData = $query->skip($offset)
+            ->take($limit)
+            ->get();
+
+        $recordsTotal = $resData->count();
+
+        $data = [];
+        $i = $offset + 1;
+
+        if ($resData->isEmpty()) {
+            $data['rnum'] = "#";
+            $data['nomer'] = "Data Kosong";
+            $data['nama'] = "Data Kosong";
+            $data['action'] = "#";
+            $arr[] = $data;
+        } else {
+            foreach ($resData as $key => $value) {
+                $dataButton = base64_encode($value->id);
+
+                $data['rnum'] = $i;
+                $data['nomer'] = $value->no_peserta;
+                $data['nama'] = $value->nama_peserta;
+                $data['action'] = '<div class="d-flex"><button type="button" class="btn btn-sm btn-success btn-view-detail"><i class="bx bx-detail"></i> Detail</button><a href="" class="btn btn-sm btn-primary ms-2"><i class="bx bx-check-square"></i>Pemeriksaan</a></div>';
+
+                $arr[] = $data;
+                $i++;
+            }
+        }
+
+        return \response()->json([
+            'draw' => $draw,
+            'recordsTotal' => $recordsTotal,
+            'recordsFiltered' => $recordsFiltered,
+            'data' => $arr,
+        ]);
+    }
+
     // fungsi simpan data peserta
     // @return value id untuk pemerikasaan
     public function store(Request $request)

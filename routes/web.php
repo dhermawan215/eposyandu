@@ -31,7 +31,9 @@ Route::name('app.')->group(function () {
 
 // route peserta(non admin)
 Route::get('/peserta', [PesertaController::class, 'index'])->name('peserta');
+Route::get('/peserta/detail/{id}', [PesertaController::class, 'detail'])->name('peserta_detail');
 Route::post('/peserta', [PesertaController::class, 'store']);
+Route::post('/pesertas', [PesertaController::class, 'dataPeserta']);
 
 // Route pemerikasaan peserta
 Route::get('/pemeriksaan/{id}', [PemeriksaanController::class, 'pemeriksaan'])->name('pemeriksaan');

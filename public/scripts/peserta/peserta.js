@@ -29,7 +29,7 @@ var Index = (function () {
             processing: true,
             serverSide: true,
             ajax: {
-                url: url + "/admin/peserta",
+                url: url + "/pesertas",
                 type: "POST",
                 data: {
                     _token: csrf_token,
