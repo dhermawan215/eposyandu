@@ -57,7 +57,7 @@ class PesertaController extends Controller
                 $data['rnum'] = $i;
                 $data['nomer'] = $value->no_peserta;
                 $data['nama'] = $value->nama_peserta;
-                $data['action'] = '<div class="d-flex"><button type="button" class="btn btn-sm btn-success btn-view-detail"><i class="bx bx-detail"></i> Detail</button><a href="" class="btn btn-sm btn-primary ms-2"><i class="bx bx-check-square"></i>Pemeriksaan</a></div>';
+                $data['action'] = '<div class="d-flex"><button type="button" data-peserta="' . $value->no_peserta . '" class="btn btn-sm btn-success btn-view-detail"><i class="bx bx-detail"></i> Detail</button><a href="' . \route('pemeriksaan', $value->no_peserta) . '" class="btn btn-sm btn-primary ms-2"><i class="bx bx-check-square"></i>Pemeriksaan</a></div>';
 
                 $arr[] = $data;
                 $i++;
@@ -116,5 +116,24 @@ class PesertaController extends Controller
         ]);
 
         return \response()->json(['success' => \true, 'peserta' => $dataPeserta->no_peserta], 200);
+    }
+
+    // fungsi untuk detail data di modal peserta
+    // @retun value peserta
+    public function detail($id)
+    {
+        $peserta = Peserta::with('kategoriPeserta')->where('no_peserta', $id)->first();
+
+        $data = [];
+        $data['no_peserta'] = $peserta->no_peserta;
+        $data['nama_peserta'] = $peserta->nama_peserta;
+        $data['tempat_lahir'] = $peserta->tempat_lahir;
+        $data['tanggal_lahir'] = $peserta->tanggal_lahir;
+        $data['alamat'] = $peserta->alamat;
+        $data['gender'] = $peserta->gender;
+        $data['nama_ibu_kandung'] = $peserta->nama_ibu_kandung;
+        $data['kategori'] = $peserta->kategoriPeserta->nama_kategori_peserta;
+
+        return \response()->json(['success' => true, 'data' => $data], 200);
     }
 }

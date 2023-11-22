@@ -77,10 +77,45 @@ var Index = (function () {
         });
     };
 
+    var handleDetailData = function () {
+        $(document).on("click", ".btn-view-detail", function (e) {
+            e.preventDefault();
+            const noPeserta = $(this).data("peserta");
+
+            $.ajax({
+                type: "POST",
+                url: url + "/peserta/detail/" + noPeserta,
+                data: {
+                    _token: csrf_token,
+                },
+                beforeSend: function () {
+                    $("#isLoading").removeClass("display-none");
+                },
+                success: function (response) {
+                    $("#modalDetailPeserta").modal("show");
+                    $("#noPeserta").val(response.data.no_peserta);
+                    $("#namaPesertaView").val(response.data.nama_peserta);
+                    $("#tempatLahirView").val(response.data.tempat_lahir);
+                    $("#tanggalLahirView").val(response.data.tanggal_lahir);
+                    $("#genderView").val(response.data.gender);
+                    $("#namaIbuKandungView").val(
+                        response.data.nama_ibu_kandung
+                    );
+                    $("#alamatView").val(response.data.alamat);
+                    $("#kategoriView").val(response.data.kategori);
+                },
+                complete: function () {
+                    $("#isLoading").addClass("display-none");
+                },
+            });
+        });
+    };
+
     return {
         init: function () {
             handleData();
             handlePesertaSave();
+            handleDetailData();
         },
     };
 })();

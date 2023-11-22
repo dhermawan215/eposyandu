@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        .display-none {
+            display: none !important;
+        }
+    </style>
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <nav aria-label="breadcrumb">
@@ -18,6 +23,11 @@
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#modalDaftarPesertaBaru">Daftar
                     Peserta Baru</button>
+            </div>
+        </div>
+        <div class="row mt-2 mb-2 mx-2">
+            <div class="spinner-border text-primary display-none" id="isLoading" role="status">
+
             </div>
         </div>
         <div class="row mt-2">
@@ -46,6 +56,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- modal daftar peserta baru -->
@@ -115,6 +126,78 @@
                         </div>
                     </div>
                 </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Tutup
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal detail peserta -->
+    <div class="modal fade" id="modalDetailPeserta" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Modal Detail Peserta </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="namaPeserta" class="form-label">Nomor Peserta</label>
+                            <input type="text" id="noPeserta" class="form-control" placeholder="No peserta"
+                                readonly />
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-3">
+                            <label for="namaPeserta" class="form-label">Nama Peserta</label>
+                            <input type="text" id="namaPesertaView" class="form-control" placeholder="Nama peserta"
+                                readonly />
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-1">
+                            <label for="tempatLahir" class="form-label">Tempat Lahir</label>
+                            <input type="text" id="tempatLahirView" class="form-control" placeholder="Tempat lahir"
+                                readonly />
+                        </div>
+                        <div class="col mb-1">
+                            <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
+                            <input type="date" id="tanggalLahirView" class="form-control" placeholder="DD / MM / YY"
+                                readonly />
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-1">
+                            <label for="gender" class="form-label">Jenis Kelamin</label>
+                            <input type="text" id="genderView" class="form-control" readonly>
+                        </div>
+                        <div class="col mb-1">
+                            <label for="namaIbuKandung" class="form-label">Nama Ibu Kandung</label>
+                            <input type="text" id="namaIbuKandungView" class="form-control"
+                                placeholder="Nama ibu kandung" readonly />
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-1">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <input type="text" id="alamatView" class="form-control" placeholder="Alamat" readonly />
+                        </div>
+                    </div>
+                    <div class="row g-2">
+
+                        <label for="kategori_peserta" class="form-label">Kategori Peserta</label>
+                        <input type="text" id="kategoriView" class="form-control" readonly>
+
+                    </div>
+
+                </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Tutup
