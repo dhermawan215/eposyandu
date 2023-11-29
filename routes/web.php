@@ -37,6 +37,8 @@ Route::post('/pesertas', [PesertaController::class, 'dataPeserta']);
 
 // Route pemerikasaan peserta
 Route::get('/pemeriksaan/{id}', [PemeriksaanController::class, 'pemeriksaan'])->name('pemeriksaan');
+Route::post('/pemeriksaan', [PemeriksaanController::class, 'simpanPemeriksaan']);
+Route::post('/pemeriksaan/riwayat', [PemeriksaanController::class, 'riwayatPemeriksaan']);
 
 // route admin
 Route::prefix('admin')->name('admin.')->group(function () {
